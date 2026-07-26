@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerimojan — Kerim Demirci | Yazılım Mühendisi</title>
+<meta name="description" content="Kerim Demirci'nin yazılım öğrenme yolculuğu ve portfolyosu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #10142A;
+    --bg-2: #171C3B;
+    --surface: #1D2347;
+    --surface-2: #262C55;
+    --line: #333B6E;
+    --text: #F1EFE7;
+    --text-muted: #9298C2;
+    --text-dim: #5B6294;
+    --amber: #E8B04B;
+    --amber-dim: #6B5A32;
+    --teal: #5FD9C9;
+    --radius: 14px;
+    --serif: "Fraunces", Georgia, serif;
+    --mono: "JetBrains Mono", "Courier New", monospace;
+    --sans: "Inter", -apple-system, sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  html{ scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body{
+    background: radial-gradient(120% 100% at 15% 0%, var(--bg-2) 0%, var(--bg) 55%);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(16, 20, 42, 0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .logo{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: 0.01em;
+  }
+  .logo em{
+    font-style: normal;
+    color: var(--amber);
+  }
+  .navlinks{
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+  .navlinks a{
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible{
+    color: var(--amber);
+  }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .navtoggle{ display: none; }
+
+  @media (max-width: 620px){
+    .navlinks{ display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 96px 0 80px;
+    position: relative;
+  }
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 0 4px rgba(95, 217, 201, 0.15);
+  }
+  h1{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.05;
+    max-width: 14ch;
+  }
+  h1 .accent{ color: var(--amber); font-style: italic; font-weight: 500; }
+  .role{
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-top: 18px;
+  }
+  .bio{
+    max-width: 56ch;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-top: 24px;
+  }
+  .cta-row{
+    display: flex;
+    gap: 14px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary{
+    background: var(--amber);
+    color: #201607;
+  }
+  .btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232, 176, 75, 0.25);
+  }
+  .btn-ghost{
+    border: 1px solid var(--line);
+    color: var(--text);
+  }
+  .btn-ghost:hover{
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+
+  /* ---------- Section shared ---------- */
+  section{ padding: 72px 0; border-top: 1px solid var(--line); }
+  .section-head{ margin-bottom: 44px; }
+  .section-tag{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  h2{
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+    font-weight: 600;
+    margin-top: 8px;
+  }
+  .lead{
+    color: var(--text-muted);
+    max-width: 60ch;
+    margin-top: 14px;
+  }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- Learning path (signature element) ---------- */
+  .path{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .path::before{
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 14px;
+    bottom: 14px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--amber) 0%, var(--amber) 22%, var(--line) 22%, var(--line) 100%);
+  }
+  .step{
+    position: relative;
+    padding: 22px 0 22px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .step::before{
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 26px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--text-dim);
+  }
+  .step.current::before{
+    border-color: var(--amber);
+    background: var(--amber);
+    box-shadow: 0 0 0 6px rgba(232, 176, 75, 0.18);
+  }
+  .step-label{
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .step.current .step-label{ color: var(--amber); }
+  .step-title{
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .step.current .step-title{ color: var(--amber); }
+  .step-desc{ color: var(--text-muted); font-size: 0.95rem; max-width: 52ch; }
+
+  /* ---------- Interests grid ---------- */
+  .interests{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .interest-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .interest-card:hover{
+    border-color: var(--teal);
+    transform: translateY(-3px);
+  }
+  .interest-card h3{
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .interest-card p{ color: var(--text-muted); font-size: 0.9rem; }
+
+  /* ---------- Projects empty state ---------- */
+  .empty-project{
+    background: var(--surface);
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    padding: 44px 32px;
+    text-align: center;
+  }
+  .empty-project svg{ width: 40px; height: 40px; color: var(--text-dim); margin-bottom: 18px; }
+  .empty-project h3{
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  .empty-project p{
+    color: var(--text-muted);
+    max-width: 44ch;
+    margin: 0 auto;
+    font-size: 0.95rem;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .contact-card .label{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .contact-card .email{
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .contact-card .email:hover{ color: var(--amber); }
+
+  footer{
+    padding: 32px 0 48px;
+    text-align: center;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <span class="logo">Kerim<em>ojan</em></span>
+    <ul class="navlinks">
+      <li><a href="#hakkimda">Hakkımda</a></li>
+      <li><a href="#yol">Öğrenme Yolum</a></li>
+      <li><a href="#projeler">Projeler</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <p class="eyebrow">Aktif olarak öğreniyor</p>
+    <h1>Merhaba, ben <span class="accent">Kerim</span>.</h1>
+    <p class="role">Yazılım Mühendisi</p>
+    <p class="bio">
+      Yazılımın hemen her alanına meraklı, kendi kendine öğrenen bir yazılım mühendisi adayıyım.
+      Web'den mobil uygulamalara, farklı teknolojileri keşfetmeyi ve öğrendiklerimi gerçek projelere
+      dönüştürmeyi seviyorum. Amacım bu alanda derinleşip kariyerimi yazılım üzerine kurmak — Kerimojan,
+      bu yolculuğun bir yansıması.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#iletisim">İletişime Geç</a>
+      <a class="btn btn-ghost" href="#yol">Öğrenme Yolumu Gör</a>
+    </div>
+  </section>
+
+  <section id="yol">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-tag">Yol Haritası</p>
+        <h2>Öğrenme Yolum</h2>
+        <p class="lead">Şu anki durum ve önümdeki hedefler — adım adım ilerliyorum.</p>
+      </div>
+
+      <div class="path reveal">
+        <div class="step current">
+          <span class="step-label">Şu an · aktif</span>
+          <span class="step-title">Python</span>
+          <p class="step-desc">Temel dilim. Günlük olarak pratik yapıp projelerimde kullanıyorum.</p>
+        </div>
+        <div class="step">
+          <span class="step-label">Sırada</span>
+          <span class="step-title">PHP</span>
+          <p class="step-desc">Web geliştirme tarafını güçlendirmek için öğrenmeyi planlıyorum.</p>
+        </div>
+        <div class="step">
+          <span class="step-label">Planlanan</span>
+          <span class="step-title">C#</span>
+          <p class="step-desc">Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfetmek için.</p>
+        </div>
+        <div class="step">
+          <span class="step-label">Planlanan</span>
+          <span class="step-title">C++</span>
+          <p class="step-desc">Temellere inmek, performans ve bellek yönetimini gerçekten anlamak için.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hakkimda">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-tag">Hakkımda</p>
+        <h2>Yazılımın her alanı ilgimi çekiyor</h2>
+        <p class="lead">Henüz tek bir alana odaklanmadım — bu da bana geniş bir keşif alanı sağlıyor.</p>
+      </div>
+      <div class="interests reveal">
+        <div class="interest-card">
+          <h3>Web Geliştirme</h3>
+          <p>Frontend ve backend'in nasıl bir araya geldiğini öğreniyorum.</p>
+        </div>
+        <div class="interest-card">
+          <h3>Masaüstü & Sistem</h3>
+          <p>C++ ile temellere inip performansı anlamayı hedefliyorum.</p>
+        </div>
+        <div class="interest-card">
+          <h3>Uygulama Geliştirme</h3>
+          <p>C# ile farklı bir ekosistemde nesne yönelimli düşünmeyi öğreniyorum.</p>
+        </div>
+        <div class="interest-card">
+          <h3>Otomasyon & Scriptler</h3>
+          <p>Python ile günlük işleri kolaylaştıran küçük araçlar yazıyorum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projeler">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-tag">Portfolyo</p>
+        <h2>Projeler</h2>
+        <p class="lead">İlk projemi burada paylaşacağım — hazırlık aşamasındayım.</p>
+      </div>
+      <div class="empty-project reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 4v16m8-8H4" stroke-linecap="round"/>
+        </svg>
+        <h3>Yakında burada</h3>
+        <p>İlk projem üzerinde çalışıyorum. Tamamlandığında burada, açıklaması ve bağlantısıyla birlikte yer alacak.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="iletisim">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-tag">İletişim</p>
+        <h2>Birlikte bir şeyler yapalım</h2>
+        <p class="lead">Sorularınız veya iş birliği fikirleriniz için bana ulaşabilirsiniz.</p>
+      </div>
+      <div class="contact-card reveal">
+        <div>
+          <p class="label">E-posta</p>
+          <a class="email" href="mailto:kerimdmrc379@gmail.com">kerimdmrc379@gmail.com</a>
+        </div>
+        <a class="btn btn-primary" href="mailto:kerimdmrc379@gmail.com">Mesaj Gönder</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Kerimojan — Kerim Demirci</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
