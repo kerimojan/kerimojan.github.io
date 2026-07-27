@@ -57,7 +57,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(16, 20, 42, 0.82);
+    background: rgba(16, 20, 42, 0.88);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -66,17 +66,26 @@
     align-items: center;
     justify-content: space-between;
     height: 68px;
+    gap: 16px;
   }
   .logo{
     font-family: var(--serif);
     font-weight: 600;
     font-size: 1.25rem;
     letter-spacing: 0.01em;
+    flex-shrink: 0;
   }
   .logo em{
     font-style: normal;
     color: var(--amber);
   }
+
+  .nav-right{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
   .navlinks{
     display: flex;
     gap: 28px;
@@ -87,6 +96,7 @@
   .navlinks a{
     text-decoration: none;
     transition: color 0.2s ease;
+    white-space: nowrap;
   }
   .navlinks a:hover, .navlinks a:focus-visible{
     color: var(--amber);
@@ -96,10 +106,86 @@
     outline-offset: 3px;
     border-radius: 4px;
   }
-  .navtoggle{ display: none; }
 
-  @media (max-width: 620px){
+  /* ---------- Language switch ---------- */
+  .langswitch{
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .langswitch button{
+    position: relative;
+    z-index: 2;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.25s ease;
+  }
+  .langswitch button.active{ color: #201607; }
+  .langswitch .pill{
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    background: var(--amber);
+    border-radius: 999px;
+    transition: transform 0.28s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: 1;
+  }
+  .langswitch[data-lang="en"] .pill{
+    transform: translateX(100%);
+  }
+
+  /* ---------- Mobile nav toggle ---------- */
+  .navtoggle{
+    display: none;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    color: var(--text);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .navtoggle svg{ width: 20px; height: 20px; }
+
+  .mobile-menu{
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 0 20px;
+    border-top: 1px solid var(--line);
+  }
+  .mobile-menu.open{ display: flex; }
+  .mobile-menu a{
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    padding: 12px 4px;
+    border-radius: 8px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .mobile-menu a:hover{ color: var(--amber); background: var(--surface); }
+
+  @media (max-width: 720px){
     .navlinks{ display: none; }
+    .navtoggle{ display: flex; }
   }
 
   /* ---------- Hero ---------- */
@@ -357,60 +443,76 @@
 <header>
   <nav class="wrap">
     <span class="logo">Kerim<em>ojan</em></span>
-    <ul class="navlinks">
-      <li><a href="#hakkimda">Hakkımda</a></li>
-      <li><a href="#yol">Öğrenme Yolum</a></li>
-      <li><a href="#projeler">Projeler</a></li>
-      <li><a href="#iletisim">İletişim</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="navlinks">
+        <li><a href="#hakkimda" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+        <li><a href="#yol" data-tr="Öğrenme Yolum" data-en="Learning Path">Öğrenme Yolum</a></li>
+        <li><a href="#projeler" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+        <li><a href="#iletisim" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+      </ul>
+      <div class="langswitch" id="langswitch" data-lang="tr">
+        <span class="pill" aria-hidden="true"></span>
+        <button type="button" data-setlang="tr" class="active" aria-pressed="true">TR</button>
+        <button type="button" data-setlang="en" aria-pressed="false">ENG</button>
+      </div>
+      <button class="navtoggle" id="navtoggle" aria-label="Menüyü aç" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
   </nav>
+  <div class="mobile-menu wrap" id="mobileMenu">
+    <a href="#hakkimda" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+    <a href="#yol" data-tr="Öğrenme Yolum" data-en="Learning Path">Öğrenme Yolum</a>
+    <a href="#projeler" data-tr="Projeler" data-en="Projects">Projeler</a>
+    <a href="#iletisim" data-tr="İletişim" data-en="Contact">İletişim</a>
+  </div>
 </header>
 
 <main>
   <section class="hero wrap">
-    <p class="eyebrow">Aktif olarak öğreniyor</p>
-    <h1>Merhaba, ben <span class="accent">Kerim</span>.</h1>
-    <p class="role">Yazılım Mühendisi</p>
-    <p class="bio">
+    <p class="eyebrow" data-tr="Aktif olarak öğreniyor" data-en="Actively learning">Aktif olarak öğreniyor</p>
+    <h1 data-tr="Merhaba, ben {accent}Kerim{/accent}." data-en="Hi, I'm {accent}Kerim{/accent}.">Merhaba, ben <span class="accent">Kerim</span>.</h1>
+    <p class="role" data-tr="Yazılım Mühendisi" data-en="Software Engineer">Yazılım Mühendisi</p>
+    <p class="bio" data-tr="Yazılımın hemen her alanına meraklı, kendi kendine öğrenen bir yazılım mühendisi adayıyım. Web'den mobil uygulamalara, farklı teknolojileri keşfetmeyi ve öğrendiklerimi gerçek projelere dönüştürmeyi seviyorum. Amacım bu alanda derinleşip kariyerimi yazılım üzerine kurmak — Kerimojan, bu yolculuğun bir yansıması." data-en="I'm a self-taught aspiring software engineer, curious about nearly every corner of software. From web to mobile, I love exploring different technologies and turning what I learn into real projects. My goal is to go deep in this field and build my career around it — Kerimojan is a reflection of that journey.">
       Yazılımın hemen her alanına meraklı, kendi kendine öğrenen bir yazılım mühendisi adayıyım.
       Web'den mobil uygulamalara, farklı teknolojileri keşfetmeyi ve öğrendiklerimi gerçek projelere
       dönüştürmeyi seviyorum. Amacım bu alanda derinleşip kariyerimi yazılım üzerine kurmak — Kerimojan,
       bu yolculuğun bir yansıması.
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#iletisim">İletişime Geç</a>
-      <a class="btn btn-ghost" href="#yol">Öğrenme Yolumu Gör</a>
+      <a class="btn btn-primary" href="#iletisim" data-tr="İletişime Geç" data-en="Get in Touch">İletişime Geç</a>
+      <a class="btn btn-ghost" href="#yol" data-tr="Öğrenme Yolumu Gör" data-en="See My Learning Path">Öğrenme Yolumu Gör</a>
     </div>
   </section>
 
   <section id="yol">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="section-tag">Yol Haritası</p>
-        <h2>Öğrenme Yolum</h2>
-        <p class="lead">Şu anki durum ve önümdeki hedefler — adım adım ilerliyorum.</p>
+        <p class="section-tag" data-tr="Yol Haritası" data-en="Roadmap">Yol Haritası</p>
+        <h2 data-tr="Öğrenme Yolum" data-en="My Learning Path">Öğrenme Yolum</h2>
+        <p class="lead" data-tr="Şu anki durum ve önümdeki hedefler — adım adım ilerliyorum." data-en="Where I am now and what's next — moving forward step by step.">Şu anki durum ve önümdeki hedefler — adım adım ilerliyorum.</p>
       </div>
 
       <div class="path reveal">
         <div class="step current">
-          <span class="step-label">Şu an · aktif</span>
+          <span class="step-label" data-tr="Şu an · aktif" data-en="Current · active">Şu an · aktif</span>
           <span class="step-title">Python</span>
-          <p class="step-desc">Temel dilim. Günlük olarak pratik yapıp projelerimde kullanıyorum.</p>
+          <p class="step-desc" data-tr="Temel dilim. Günlük olarak pratik yapıp projelerimde kullanıyorum." data-en="My core language. I practice daily and use it in my projects.">Temel dilim. Günlük olarak pratik yapıp projelerimde kullanıyorum.</p>
         </div>
         <div class="step">
-          <span class="step-label">Sırada</span>
+          <span class="step-label" data-tr="Sırada" data-en="Next">Sırada</span>
           <span class="step-title">PHP</span>
-          <p class="step-desc">Web geliştirme tarafını güçlendirmek için öğrenmeyi planlıyorum.</p>
+          <p class="step-desc" data-tr="Web geliştirme tarafını güçlendirmek için öğrenmeyi planlıyorum." data-en="Planning to learn it to strengthen my web development side.">Web geliştirme tarafını güçlendirmek için öğrenmeyi planlıyorum.</p>
         </div>
         <div class="step">
-          <span class="step-label">Planlanan</span>
+          <span class="step-label" data-tr="Planlanan" data-en="Planned">Planlanan</span>
           <span class="step-title">C#</span>
-          <p class="step-desc">Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfetmek için.</p>
+          <p class="step-desc" data-tr="Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfetmek için." data-en="To explore a different ecosystem and dive deeper into object-oriented programming.">Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfetmek için.</p>
         </div>
         <div class="step">
-          <span class="step-label">Planlanan</span>
+          <span class="step-label" data-tr="Planlanan" data-en="Planned">Planlanan</span>
           <span class="step-title">C++</span>
-          <p class="step-desc">Temellere inmek, performans ve bellek yönetimini gerçekten anlamak için.</p>
+          <p class="step-desc" data-tr="Temellere inmek, performans ve bellek yönetimini gerçekten anlamak için." data-en="To go back to the fundamentals and truly understand performance and memory management.">Temellere inmek, performans ve bellek yönetimini gerçekten anlamak için.</p>
         </div>
       </div>
     </div>
@@ -419,26 +521,26 @@
   <section id="hakkimda">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="section-tag">Hakkımda</p>
-        <h2>Yazılımın her alanı ilgimi çekiyor</h2>
-        <p class="lead">Henüz tek bir alana odaklanmadım — bu da bana geniş bir keşif alanı sağlıyor.</p>
+        <p class="section-tag" data-tr="Hakkımda" data-en="About">Hakkımda</p>
+        <h2 data-tr="Yazılımın her alanı ilgimi çekiyor" data-en="Every area of software interests me">Yazılımın her alanı ilgimi çekiyor</h2>
+        <p class="lead" data-tr="Henüz tek bir alana odaklanmadım — bu da bana geniş bir keşif alanı sağlıyor." data-en="I haven't settled into one area yet — that gives me a wide field to explore.">Henüz tek bir alana odaklanmadım — bu da bana geniş bir keşif alanı sağlıyor.</p>
       </div>
       <div class="interests reveal">
         <div class="interest-card">
-          <h3>Web Geliştirme</h3>
-          <p>Frontend ve backend'in nasıl bir araya geldiğini öğreniyorum.</p>
+          <h3 data-tr="Web Geliştirme" data-en="Web Development">Web Geliştirme</h3>
+          <p data-tr="Frontend ve backend'in nasıl bir araya geldiğini öğreniyorum." data-en="Learning how frontend and backend come together.">Frontend ve backend'in nasıl bir araya geldiğini öğreniyorum.</p>
         </div>
         <div class="interest-card">
-          <h3>Masaüstü & Sistem</h3>
-          <p>C++ ile temellere inip performansı anlamayı hedefliyorum.</p>
+          <h3 data-tr="Masaüstü &amp; Sistem" data-en="Desktop &amp; Systems">Masaüstü &amp; Sistem</h3>
+          <p data-tr="C++ ile temellere inip performansı anlamayı hedefliyorum." data-en="Aiming to go back to fundamentals and understand performance with C++.">C++ ile temellere inip performansı anlamayı hedefliyorum.</p>
         </div>
         <div class="interest-card">
-          <h3>Uygulama Geliştirme</h3>
-          <p>C# ile farklı bir ekosistemde nesne yönelimli düşünmeyi öğreniyorum.</p>
+          <h3 data-tr="Uygulama Geliştirme" data-en="App Development">Uygulama Geliştirme</h3>
+          <p data-tr="C# ile farklı bir ekosistemde nesne yönelimli düşünmeyi öğreniyorum." data-en="Learning object-oriented thinking in a different ecosystem with C#.">C# ile farklı bir ekosistemde nesne yönelimli düşünmeyi öğreniyorum.</p>
         </div>
         <div class="interest-card">
-          <h3>Otomasyon & Scriptler</h3>
-          <p>Python ile günlük işleri kolaylaştıran küçük araçlar yazıyorum.</p>
+          <h3 data-tr="Otomasyon &amp; Scriptler" data-en="Automation &amp; Scripts">Otomasyon &amp; Scriptler</h3>
+          <p data-tr="Python ile günlük işleri kolaylaştıran küçük araçlar yazıyorum." data-en="Writing small tools with Python that make everyday tasks easier.">Python ile günlük işleri kolaylaştıran küçük araçlar yazıyorum.</p>
         </div>
       </div>
     </div>
@@ -447,16 +549,16 @@
   <section id="projeler">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="section-tag">Portfolyo</p>
-        <h2>Projeler</h2>
-        <p class="lead">İlk projemi burada paylaşacağım — hazırlık aşamasındayım.</p>
+        <p class="section-tag" data-tr="Portfolyo" data-en="Portfolio">Portfolyo</p>
+        <h2 data-tr="Projeler" data-en="Projects">Projeler</h2>
+        <p class="lead" data-tr="İlk projemi burada paylaşacağım — hazırlık aşamasındayım." data-en="I'll share my first project here — currently in the works.">İlk projemi burada paylaşacağım — hazırlık aşamasındayım.</p>
       </div>
       <div class="empty-project reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <path d="M12 4v16m8-8H4" stroke-linecap="round"/>
         </svg>
-        <h3>Yakında burada</h3>
-        <p>İlk projem üzerinde çalışıyorum. Tamamlandığında burada, açıklaması ve bağlantısıyla birlikte yer alacak.</p>
+        <h3 data-tr="Yakında burada" data-en="Coming soon">Yakında burada</h3>
+        <p data-tr="İlk projem üzerinde çalışıyorum. Tamamlandığında burada, açıklaması ve bağlantısıyla birlikte yer alacak." data-en="I'm working on my first project. Once it's done, it'll appear here with a description and a link.">İlk projem üzerinde çalışıyorum. Tamamlandığında burada, açıklaması ve bağlantısıyla birlikte yer alacak.</p>
       </div>
     </div>
   </section>
@@ -464,16 +566,16 @@
   <section id="iletisim">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="section-tag">İletişim</p>
-        <h2>Birlikte bir şeyler yapalım</h2>
-        <p class="lead">Sorularınız veya iş birliği fikirleriniz için bana ulaşabilirsiniz.</p>
+        <p class="section-tag" data-tr="İletişim" data-en="Contact">İletişim</p>
+        <h2 data-tr="Birlikte bir şeyler yapalım" data-en="Let's build something together">Birlikte bir şeyler yapalım</h2>
+        <p class="lead" data-tr="Sorularınız veya iş birliği fikirleriniz için bana ulaşabilirsiniz." data-en="Feel free to reach out with questions or collaboration ideas.">Sorularınız veya iş birliği fikirleriniz için bana ulaşabilirsiniz.</p>
       </div>
       <div class="contact-card reveal">
         <div>
-          <p class="label">E-posta</p>
+          <p class="label" data-tr="E-posta" data-en="Email">E-posta</p>
           <a class="email" href="mailto:kerimdmrc379@gmail.com">kerimdmrc379@gmail.com</a>
         </div>
-        <a class="btn btn-primary" href="mailto:kerimdmrc379@gmail.com">Mesaj Gönder</a>
+        <a class="btn btn-primary" href="mailto:kerimdmrc379@gmail.com" data-tr="Mesaj Gönder" data-en="Send Message">Mesaj Gönder</a>
       </div>
     </div>
   </section>
@@ -484,6 +586,7 @@
 </footer>
 
 <script>
+  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
@@ -492,8 +595,56 @@
       }
     });
   }, { threshold: 0.15 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Mobile menu toggle
+  const navtoggle = document.getElementById('navtoggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navtoggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    navtoggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      navtoggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Language switch
+  const langswitch = document.getElementById('langswitch');
+  const langButtons = langswitch.querySelectorAll('button');
+  const translatable = document.querySelectorAll('[data-tr][data-en]');
+
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+    langswitch.setAttribute('data-lang', lang);
+    langButtons.forEach(btn => {
+      const isActive = btn.dataset.setlang === lang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+
+    translatable.forEach(el => {
+      const raw = lang === 'en' ? el.dataset.en : el.dataset.tr;
+      if(raw.includes('{accent}')){
+        const parts = raw.split(/\{accent\}|\{\/accent\}/);
+        el.innerHTML = parts[0] + '<span class="accent">' + parts[1] + '</span>' + parts[2];
+      } else {
+        el.textContent = raw;
+      }
+    });
+
+    try { localStorage.setItem('kerimojan-lang', lang); } catch(e){}
+  }
+
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.setlang));
+  });
+
+  let savedLang = 'tr';
+  try { savedLang = localStorage.getItem('kerimojan-lang') || 'tr'; } catch(e){}
+  if(savedLang === 'en'){ applyLang('en'); }
 </script>
 
 </body>
