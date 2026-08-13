@@ -290,12 +290,15 @@
 
   .reveal{
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(36px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .reveal.is-visible{
     opacity: 1;
     transform: translateY(0);
+  }
+  .interest-card.reveal, .step.reveal{
+    transform: translateY(28px);
   }
 
   /* ---------- Learning path (signature element) ---------- */
@@ -493,23 +496,23 @@
         <p class="lead" data-tr="Şu anki durum ve önümdeki hedefler — adım adım ilerliyorum." data-en="Where I am now and what's next — moving forward step by step.">Şu anki durum ve önümdeki hedefler — adım adım ilerliyorum.</p>
       </div>
 
-      <div class="path reveal">
-        <div class="step current">
+      <div class="path">
+        <div class="step current reveal">
           <span class="step-label" data-tr="Şu an · aktif" data-en="Current · active">Şu an · aktif</span>
           <span class="step-title">Python</span>
           <p class="step-desc" data-tr="Temel dilim. Günlük olarak pratik yapıp projelerimde kullanıyorum." data-en="My core language. I practice daily and use it in my projects.">Temel dilim. Günlük olarak pratik yapıp projelerimde kullanıyorum.</p>
         </div>
-        <div class="step">
+        <div class="step reveal">
           <span class="step-label" data-tr="Sırada" data-en="Next">Sırada</span>
           <span class="step-title">PHP</span>
           <p class="step-desc" data-tr="Web geliştirme tarafını güçlendirmek için öğrenmeyi planlıyorum." data-en="Planning to learn it to strengthen my web development side.">Web geliştirme tarafını güçlendirmek için öğrenmeyi planlıyorum.</p>
         </div>
-        <div class="step">
+        <div class="step reveal">
           <span class="step-label" data-tr="Planlanan" data-en="Planned">Planlanan</span>
           <span class="step-title">C#</span>
           <p class="step-desc" data-tr="Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfetmek için." data-en="To explore a different ecosystem and dive deeper into object-oriented programming.">Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfetmek için.</p>
         </div>
-        <div class="step">
+        <div class="step reveal">
           <span class="step-label" data-tr="Planlanan" data-en="Planned">Planlanan</span>
           <span class="step-title">C++</span>
           <p class="step-desc" data-tr="Temellere inmek, performans ve bellek yönetimini gerçekten anlamak için." data-en="To go back to the fundamentals and truly understand performance and memory management.">Temellere inmek, performans ve bellek yönetimini gerçekten anlamak için.</p>
@@ -525,20 +528,20 @@
         <h2 data-tr="Yazılımın her alanı ilgimi çekiyor" data-en="Every area of software interests me">Yazılımın her alanı ilgimi çekiyor</h2>
         <p class="lead" data-tr="Henüz tek bir alana odaklanmadım — bu da bana geniş bir keşif alanı sağlıyor." data-en="I haven't settled into one area yet — that gives me a wide field to explore.">Henüz tek bir alana odaklanmadım — bu da bana geniş bir keşif alanı sağlıyor.</p>
       </div>
-      <div class="interests reveal">
-        <div class="interest-card">
+      <div class="interests">
+        <div class="interest-card reveal">
           <h3 data-tr="Web Geliştirme" data-en="Web Development">Web Geliştirme</h3>
           <p data-tr="Frontend ve backend'in nasıl bir araya geldiğini öğreniyorum." data-en="Learning how frontend and backend come together.">Frontend ve backend'in nasıl bir araya geldiğini öğreniyorum.</p>
         </div>
-        <div class="interest-card">
+        <div class="interest-card reveal">
           <h3 data-tr="Masaüstü &amp; Sistem" data-en="Desktop &amp; Systems">Masaüstü &amp; Sistem</h3>
           <p data-tr="C++ ile temellere inip performansı anlamayı hedefliyorum." data-en="Aiming to go back to fundamentals and understand performance with C++.">C++ ile temellere inip performansı anlamayı hedefliyorum.</p>
         </div>
-        <div class="interest-card">
+        <div class="interest-card reveal">
           <h3 data-tr="Uygulama Geliştirme" data-en="App Development">Uygulama Geliştirme</h3>
           <p data-tr="C# ile farklı bir ekosistemde nesne yönelimli düşünmeyi öğreniyorum." data-en="Learning object-oriented thinking in a different ecosystem with C#.">C# ile farklı bir ekosistemde nesne yönelimli düşünmeyi öğreniyorum.</p>
         </div>
-        <div class="interest-card">
+        <div class="interest-card reveal">
           <h3 data-tr="Otomasyon &amp; Scriptler" data-en="Automation &amp; Scripts">Otomasyon &amp; Scriptler</h3>
           <p data-tr="Python ile günlük işleri kolaylaştıran küçük araçlar yazıyorum." data-en="Writing small tools with Python that make everyday tasks easier.">Python ile günlük işleri kolaylaştıran küçük araçlar yazıyorum.</p>
         </div>
