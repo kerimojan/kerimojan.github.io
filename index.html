@@ -88,7 +88,7 @@
 
   .navlinks{
     display: flex;
-    gap: 28px;
+    gap: 22px;
     list-style: none;
     font-size: 0.92rem;
     color: var(--text-muted);
@@ -183,7 +183,7 @@
   }
   .mobile-menu a:hover{ color: var(--amber); background: var(--surface); }
 
-  @media (max-width: 720px){
+  @media (max-width: 860px){
     .navlinks{ display: none; }
     .navtoggle{ display: flex; }
   }
@@ -460,6 +460,132 @@
     font-size: 0.95rem;
   }
 
+  /* ---------- Services ---------- */
+  .services{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .service-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s ease;
+  }
+  .service-card:hover{ border-color: var(--amber); }
+  .service-icon{ width: 36px; height: 36px; color: var(--amber); margin-bottom: 4px; }
+  .service-card h3{ font-family: var(--serif); font-size: 1.15rem; font-weight: 600; }
+  .service-card p{ color: var(--text-muted); font-size: 0.92rem; }
+  .service-card ul{
+    list-style: none;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+  .service-card li{ position: relative; padding-left: 18px; }
+  .service-card li::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 8px;
+    height: 2px;
+    background: var(--teal);
+  }
+  .honest-note{
+    margin-top: 20px;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+  .services-cta{ margin-top: 28px; }
+  @media (max-width: 860px){ .services{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px){ .services{ grid-template-columns: 1fr; } }
+
+  /* ---------- Process + tech ---------- */
+  .process{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .proc-step{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .proc-num{ font-family: var(--mono); font-size: 0.8rem; color: var(--amber); letter-spacing: 0.08em; }
+  .proc-step h3{ font-family: var(--serif); font-size: 1.1rem; font-weight: 600; margin: 8px 0 6px; }
+  .proc-step p{ color: var(--text-muted); font-size: 0.9rem; }
+  @media (max-width: 860px){ .process{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px){ .process{ grid-template-columns: 1fr; } }
+  .tech-group + .tech-group{ margin-top: 22px; }
+  .tech-label{
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+  }
+  .tech-group .chips{ margin-top: 10px; }
+  .chip.learning{ color: var(--amber); border-color: rgba(232, 176, 75, 0.4); background: rgba(232, 176, 75, 0.08); }
+  .chip.planned{ color: var(--text-muted); border-style: dashed; border-color: var(--line); background: transparent; }
+
+  /* ---------- Quote form ---------- */
+  .quote{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .field{ display: flex; flex-direction: column; gap: 6px; }
+  .field.full{ grid-column: 1 / -1; }
+  .field label{
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+  }
+  .field input, .field select, .field textarea{
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    padding: 12px 14px;
+  }
+  .field textarea{ min-height: 130px; resize: vertical; }
+  .field input::placeholder, .field textarea::placeholder{ color: var(--text-dim); }
+  .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 1px;
+    border-color: var(--amber);
+  }
+  .field select option{ background: var(--bg); color: var(--text); }
+  .quote-actions{
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .quote-actions small{ color: var(--text-dim); font-size: 0.82rem; max-width: 46ch; }
+  button.btn{ border: none; cursor: pointer; font-family: var(--sans); }
+  @media (max-width: 620px){
+    .quote{ grid-template-columns: 1fr; padding: 22px; }
+  }
+
   /* ---------- Contact ---------- */
   .contact-card{
     background: var(--surface);
@@ -505,8 +631,9 @@
     <span class="logo">Kerim<em>ojan</em></span>
     <div class="nav-right">
       <ul class="navlinks">
-        <li><a href="#hakkimda" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+        <li><a href="#hizmetler" data-tr="Hizmetler" data-en="Services">Hizmetler</a></li>
         <li><a href="#yol" data-tr="Öğrenme Yolum" data-en="Learning Path">Öğrenme Yolum</a></li>
+        <li><a href="#hakkimda" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
         <li><a href="#projeler" data-tr="Projeler" data-en="Projects">Projeler</a></li>
         <li><a href="#iletisim" data-tr="İletişim" data-en="Contact">İletişim</a></li>
       </ul>
@@ -521,8 +648,9 @@
     </div>
   </nav>
   <div class="mobile-menu wrap" id="mobileMenu">
-    <a href="#hakkimda" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+    <a href="#hizmetler" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
     <a href="#yol" data-tr="Öğrenme Yolum" data-en="Learning Path">Öğrenme Yolum</a>
+    <a href="#hakkimda" data-tr="Hakkımda" data-en="About">Hakkımda</a>
     <a href="#projeler" data-tr="Projeler" data-en="Projects">Projeler</a>
     <a href="#iletisim" data-tr="İletişim" data-en="Contact">İletişim</a>
   </div>
@@ -541,7 +669,122 @@
     </p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#iletisim" data-tr="İletişime Geç" data-en="Get in Touch">İletişime Geç</a>
-      <a class="btn btn-ghost" href="#yol" data-tr="Öğrenme Yolumu Gör" data-en="See My Learning Path">Öğrenme Yolumu Gör</a>
+      <a class="btn btn-ghost" href="#hizmetler" data-tr="Hizmetlere Bak" data-en="See Services">Hizmetlere Bak</a>
+    </div>
+  </section>
+
+  <section id="hizmetler">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-tag" data-tr="Hizmetler" data-en="Services">Hizmetler</p>
+        <h2 data-tr="Birlikte neler yapabiliriz?" data-en="What can we build together?">Birlikte neler yapabiliriz?</h2>
+        <p class="lead" data-tr="Şu an kendimi rahat hissettiğim alanlarda, küçük ve net kapsamlı işler alıyorum." data-en="I take on small, clearly scoped jobs in areas where I currently feel confident.">Şu an kendimi rahat hissettiğim alanlarda, küçük ve net kapsamlı işler alıyorum.</p>
+      </div>
+      <div class="services">
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+          <h3 data-tr="Tek Sayfalık Web Sitesi" data-en="One-Page Website">Tek Sayfalık Web Sitesi</h3>
+          <p data-tr="Kişisel tanıtım, portfolyo veya küçük bir iş için sade, hızlı ve mobil uyumlu bir sayfa." data-en="A clean, fast, mobile-friendly page for a personal intro, portfolio or small business.">Kişisel tanıtım, portfolyo veya küçük bir iş için sade, hızlı ve mobil uyumlu bir sayfa.</p>
+          <ul>
+            <li data-tr="Mobil uyumlu tasarım" data-en="Mobile-friendly design">Mobil uyumlu tasarım</li>
+            <li data-tr="TR / ENG dil seçeneği" data-en="TR / ENG language option">TR / ENG dil seçeneği</li>
+            <li data-tr="Ücretsiz yayına alma (GitHub Pages)" data-en="Free hosting setup (GitHub Pages)">Ücretsiz yayına alma (GitHub Pages)</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg>
+          <h3 data-tr="Python ile Küçük Scriptler" data-en="Small Python Scripts">Python ile Küçük Scriptler</h3>
+          <p data-tr="Tekrar eden küçük işleri otomatikleştiren basit araçlar." data-en="Simple tools that automate small, repetitive tasks.">Tekrar eden küçük işleri otomatikleştiren basit araçlar.</p>
+          <ul>
+            <li data-tr="Dosya ve klasör düzenleme" data-en="File and folder organizing">Dosya ve klasör düzenleme</li>
+            <li data-tr="Basit metin ve veri işleme" data-en="Simple text and data processing">Basit metin ve veri işleme</li>
+            <li data-tr="Konsol tabanlı araçlar" data-en="Console-based tools">Konsol tabanlı araçlar</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.1-.6-.6-2.1z"/></svg>
+          <h3 data-tr="Küçük Web Araçları" data-en="Small Web Tools">Küçük Web Araçları</h3>
+          <p data-tr="Hesaplayıcı, form veya liste gibi tek amaçlı basit web araçları." data-en="Simple single-purpose web tools such as calculators, forms or lists.">Hesaplayıcı, form veya liste gibi tek amaçlı basit web araçları.</p>
+          <ul>
+            <li data-tr="Sade ve anlaşılır arayüz" data-en="Clean, easy-to-use interface">Sade ve anlaşılır arayüz</li>
+            <li data-tr="HTML, CSS ve JavaScript" data-en="HTML, CSS and JavaScript">HTML, CSS ve JavaScript</li>
+            <li data-tr="Net ve küçük kapsam" data-en="Clear, small scope">Net ve küçük kapsam</li>
+          </ul>
+        </div>
+      </div>
+      <p class="honest-note reveal" data-tr="Yeni başlıyorum; bu yüzden küçük işlerle ilerliyorum. Kapsamı ve fiyatı birlikte, açıkça konuşuruz." data-en="I'm just getting started, so I work on small jobs. We'll talk through scope and pricing openly, together.">Yeni başlıyorum; bu yüzden küçük işlerle ilerliyorum. Kapsamı ve fiyatı birlikte, açıkça konuşuruz.</p>
+      <div class="services-cta reveal">
+        <a class="btn btn-primary" href="#teklif" data-tr="Teklif Al" data-en="Get a Quote">Teklif Al</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="surec">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-tag" data-tr="Süreç" data-en="Process">Süreç</p>
+        <h2 data-tr="Nasıl çalışıyorum" data-en="How I work">Nasıl çalışıyorum</h2>
+        <p class="lead" data-tr="Bir iş verirsen süreç dört basit adımda ilerler." data-en="If you hand me a job, it moves forward in four simple steps.">Bir iş verirsen süreç dört basit adımda ilerler.</p>
+      </div>
+      <div class="process">
+        <div class="proc-step reveal"><span class="proc-num">01</span><h3 data-tr="Dinlerim" data-en="I listen">Dinlerim</h3><p data-tr="Ne istediğini anlatırsın, ihtiyacı net anlamaya çalışırım." data-en="You tell me what you need and I make sure I understand it clearly.">Ne istediğini anlatırsın, ihtiyacı net anlamaya çalışırım.</p></div>
+        <div class="proc-step reveal"><span class="proc-num">02</span><h3 data-tr="Kapsamı konuşuruz" data-en="We agree on scope">Kapsamı konuşuruz</h3><p data-tr="Neyi, ne kadar sürede yapacağımı birlikte netleştiririz." data-en="We settle together what I'll build and how long it takes.">Neyi, ne kadar sürede yapacağımı birlikte netleştiririz.</p></div>
+        <div class="proc-step reveal"><span class="proc-num">03</span><h3 data-tr="Yaparım" data-en="I build">Yaparım</h3><p data-tr="Çalışırken ara ara güncelleme gönderirim." data-en="I send you updates along the way.">Çalışırken ara ara güncelleme gönderirim.</p></div>
+        <div class="proc-step reveal"><span class="proc-num">04</span><h3 data-tr="Teslim ederim" data-en="I deliver">Teslim ederim</h3><p data-tr="Son hali ve kullanımıyla ilgili kısa bir açıklamayla teslim ederim." data-en="I deliver the final result with a short explanation of how to use it.">Son hali ve kullanımıyla ilgili kısa bir açıklamayla teslim ederim.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="teknolojiler">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-tag" data-tr="Teknolojiler" data-en="Technologies">Teknolojiler</p>
+        <h2 data-tr="Kullandığım araçlar" data-en="Tools I use">Kullandığım araçlar</h2>
+        <p class="lead" data-tr="Şu an elimdekiler; öğrendikçe güncelliyorum." data-en="What I have right now; I update it as I learn.">Şu an elimdekiler; öğrendikçe güncelliyorum.</p>
+      </div>
+      <div class="reveal">
+        <div class="tech-group"><p class="tech-label" data-tr="Kullanılıyor" data-en="In use">Kullanılıyor</p><div class="chips"><span class="chip">Python</span><span class="chip">Git &amp; GitHub</span><span class="chip">VS Code</span></div></div>
+        <div class="tech-group"><p class="tech-label" data-tr="Öğreniyorum" data-en="Learning">Öğreniyorum</p><div class="chips"><span class="chip learning">C#</span><span class="chip learning">C++</span></div></div>
+        <div class="tech-group"><p class="tech-label" data-tr="Sırada" data-en="Next">Sırada</p><div class="chips"><span class="chip planned">PHP</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="teklif">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-tag" data-tr="Teklif" data-en="Quote">Teklif</p>
+        <h2 data-tr="Projen için teklif iste" data-en="Request a quote for your project">Projen için teklif iste</h2>
+        <p class="lead" data-tr="Kısaca ne istediğini yaz, sana e-postayla dönüş yapayım." data-en="Briefly tell me what you need and I'll get back to you by email.">Kısaca ne istediğini yaz, sana e-postayla dönüş yapayım.</p>
+      </div>
+      <form class="quote reveal" id="quoteForm">
+        <div class="field">
+          <label for="q-name" data-tr="Ad Soyad" data-en="Full name">Ad Soyad</label>
+          <input id="q-name" name="name" type="text" required autocomplete="name" placeholder="Adın" data-tr-ph="Adın" data-en-ph="Your name">
+        </div>
+        <div class="field">
+          <label for="q-email" data-tr="E-posta" data-en="Email">E-posta</label>
+          <input id="q-email" name="email" type="email" required autocomplete="email" placeholder="ornek@mail.com" data-tr-ph="ornek@mail.com" data-en-ph="you@mail.com">
+        </div>
+        <div class="field full">
+          <label for="q-service" data-tr="Hizmet türü" data-en="Service type">Hizmet türü</label>
+          <select id="q-service" name="service">
+            <option value="" data-tr="Seçiniz..." data-en="Select...">Seçiniz...</option>
+            <option value="web" data-tr="Tek sayfalık web sitesi" data-en="One-page website">Tek sayfalık web sitesi</option>
+            <option value="python" data-tr="Python scripti / otomasyon" data-en="Python script / automation">Python scripti / otomasyon</option>
+            <option value="tool" data-tr="Küçük web aracı" data-en="Small web tool">Küçük web aracı</option>
+            <option value="other" data-tr="Diğer" data-en="Other">Diğer</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="q-message" data-tr="Proje detayı" data-en="Project details">Proje detayı</label>
+          <textarea id="q-message" name="message" required placeholder="Ne yapmak istiyorsun?" data-tr-ph="Ne yapmak istiyorsun?" data-en-ph="What would you like to build?"></textarea>
+        </div>
+        <div class="quote-actions">
+          <button class="btn btn-primary" type="submit" data-tr="Teklif Talebini Hazırla" data-en="Prepare Quote Request">Teklif Talebini Hazırla</button>
+          <small data-tr="Butona basınca e-posta uygulaman hazır bir mesajla açılır; göndermek sana kalmış." data-en="Pressing the button opens your email app with a ready message; sending it is up to you.">Butona basınca e-posta uygulaman hazır bir mesajla açılır; göndermek sana kalmış.</small>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -684,6 +927,7 @@
       </div>
     </div>
   </section>
+
 </main>
 
 <footer>
@@ -730,6 +974,10 @@
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
 
+    document.querySelectorAll('[data-tr-ph]').forEach(el => {
+      el.placeholder = lang === 'en' ? el.dataset.enPh : el.dataset.trPh;
+    });
+
     translatable.forEach(el => {
       const raw = lang === 'en' ? el.dataset.en : el.dataset.tr;
       if(raw.includes('{accent}')){
@@ -742,6 +990,27 @@
 
     try { localStorage.setItem('kerimojan-lang', lang); } catch(e){}
   }
+
+  // Quote form -> opens email app with a ready message
+  const quoteForm = document.getElementById('quoteForm');
+  quoteForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const en = document.documentElement.lang === 'en';
+    const name = quoteForm.elements['name'].value.trim();
+    const email = quoteForm.elements['email'].value.trim();
+    const sel = quoteForm.elements['service'];
+    const service = sel.value ? sel.options[sel.selectedIndex].textContent : '-';
+    const message = quoteForm.elements['message'].value.trim();
+    const subject = (en ? 'Quote request - ' : 'Teklif talebi - ') + name;
+    const body = [
+      (en ? 'Name: ' : 'Ad Soyad: ') + name,
+      (en ? 'Email: ' : 'E-posta: ') + email,
+      (en ? 'Service: ' : 'Hizmet: ') + service,
+      '',
+      message
+    ].join('\n');
+    window.location.href = 'mailto:kerimdmrc379@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
 
   langButtons.forEach(btn => {
     btn.addEventListener('click', () => applyLang(btn.dataset.setlang));
