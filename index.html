@@ -290,15 +290,15 @@
 
   .reveal{
     opacity: 0;
-    transform: translateY(36px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(22px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .reveal.is-visible{
     opacity: 1;
     transform: translateY(0);
   }
   .interest-card.reveal, .step.reveal{
-    transform: translateY(28px);
+    transform: translateY(18px);
   }
 
   /* ---------- Learning path (signature element) ---------- */
@@ -315,7 +315,7 @@
     top: 14px;
     bottom: 14px;
     width: 2px;
-    background: linear-gradient(to bottom, var(--amber) 0%, var(--amber) 22%, var(--line) 22%, var(--line) 100%);
+    background: linear-gradient(to bottom, var(--teal) 0%, var(--amber) 16%, var(--amber) 56%, var(--line) 66%, var(--line) 100%);
   }
   .step{
     position: relative;
@@ -340,6 +340,11 @@
     background: var(--amber);
     box-shadow: 0 0 0 6px rgba(232, 176, 75, 0.18);
   }
+  .step.done::before{
+    border-color: var(--teal);
+    background: var(--teal);
+  }
+  .step.done .step-label{ color: var(--teal); }
   .step-label{
     font-family: var(--mono);
     font-size: 0.72rem;
@@ -372,7 +377,6 @@
   }
   .interest-card:hover{
     border-color: var(--teal);
-    transform: translateY(-3px);
   }
   .interest-card h3{
     font-family: var(--serif);
@@ -381,6 +385,59 @@
     margin-bottom: 6px;
   }
   .interest-card p{ color: var(--text-muted); font-size: 0.9rem; }
+
+  /* ---------- Hardware / mechatronics ---------- */
+  .hw{
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .chip{
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--teal);
+    border: 1px solid rgba(95, 217, 201, 0.35);
+    background: rgba(95, 217, 201, 0.07);
+    padding: 7px 14px;
+    border-radius: 999px;
+  }
+  .circuit{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 12px;
+  }
+  .circuit svg{ width: 100%; height: auto; display: block; }
+  .circuit .trace{ fill: none; stroke: var(--line); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .circuit .pulse{
+    fill: none;
+    stroke: var(--amber);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 8 140;
+    animation: flow 5s linear infinite;
+  }
+  .circuit .pulse.p2{ stroke: var(--teal); animation-duration: 6.5s; animation-delay: -2s; }
+  .circuit .pulse.p3{ animation-duration: 7s; animation-delay: -4s; }
+  .circuit .node{ fill: var(--bg); stroke: var(--text-dim); stroke-width: 2; }
+  .circuit .chipbody{ fill: var(--bg-2); stroke: var(--amber); stroke-width: 2; }
+  .circuit .pin{ stroke: var(--amber); stroke-width: 2; stroke-linecap: round; }
+  .circuit .core{ fill: var(--amber); opacity: 0.9; }
+  @keyframes flow{ to{ stroke-dashoffset: -148; } }
+  @media (prefers-reduced-motion: reduce){
+    .circuit .pulse{ animation: none; stroke-dasharray: none; opacity: 0.5; }
+  }
+  @media (max-width: 760px){
+    .hw{ grid-template-columns: 1fr; gap: 28px; }
+  }
 
   /* ---------- Projects empty state ---------- */
   .empty-project{
@@ -476,11 +533,11 @@
     <p class="eyebrow" data-tr="Aktif olarak öğreniyor" data-en="Actively learning">Aktif olarak öğreniyor</p>
     <h1 data-tr="Merhaba, ben {accent}Kerim{/accent}." data-en="Hi, I'm {accent}Kerim{/accent}.">Merhaba, ben <span class="accent">Kerim</span>.</h1>
     <p class="role" data-tr="Yazılım Mühendisi" data-en="Software Engineer">Yazılım Mühendisi</p>
-    <p class="bio" data-tr="Yazılımın hemen her alanına meraklı, kendi kendine öğrenen bir yazılım mühendisi adayıyım. Web'den mobil uygulamalara, farklı teknolojileri keşfetmeyi ve öğrendiklerimi gerçek projelere dönüştürmeyi seviyorum. Amacım bu alanda derinleşip kariyerimi yazılım üzerine kurmak — Kerimojan, bu yolculuğun bir yansıması." data-en="I'm a self-taught aspiring software engineer, curious about nearly every corner of software. From web to mobile, I love exploring different technologies and turning what I learn into real projects. My goal is to go deep in this field and build my career around it — Kerimojan is a reflection of that journey.">
+    <p class="bio" data-tr="Yazılımın hemen her alanına meraklı, kendi kendine öğrenen bir yazılım mühendisi adayıyım. Python ile başladım, şimdi C# ve C++ öğreniyorum; elektronik ve mekatronik gibi alanlar da ilgimi çekiyor. Öğrendiklerimi gerçek projelere dönüştürmeyi seviyorum. Amacım bu alanda derinleşip kariyerimi yazılım üzerine kurmak — Kerimojan, bu yolculuğun bir yansıması." data-en="I'm a self-taught aspiring software engineer, curious about nearly every corner of software. I started with Python and I'm now learning C# and C++; fields like electronics and mechatronics interest me too. I love turning what I learn into real projects. My goal is to go deep in this field and build my career around it — Kerimojan is a reflection of that journey.">
       Yazılımın hemen her alanına meraklı, kendi kendine öğrenen bir yazılım mühendisi adayıyım.
-      Web'den mobil uygulamalara, farklı teknolojileri keşfetmeyi ve öğrendiklerimi gerçek projelere
-      dönüştürmeyi seviyorum. Amacım bu alanda derinleşip kariyerimi yazılım üzerine kurmak — Kerimojan,
-      bu yolculuğun bir yansıması.
+      Python ile başladım, şimdi C# ve C++ öğreniyorum; elektronik ve mekatronik gibi alanlar da ilgimi
+      çekiyor. Öğrendiklerimi gerçek projelere dönüştürmeyi seviyorum. Amacım bu alanda derinleşip
+      kariyerimi yazılım üzerine kurmak — Kerimojan, bu yolculuğun bir yansıması.
     </p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#iletisim" data-tr="İletişime Geç" data-en="Get in Touch">İletişime Geç</a>
@@ -497,25 +554,25 @@
       </div>
 
       <div class="path">
-        <div class="step current reveal">
-          <span class="step-label" data-tr="Şu an · aktif" data-en="Current · active">Şu an · aktif</span>
+        <div class="step done reveal">
+          <span class="step-label" data-tr="Kullanılıyor" data-en="In use">Kullanılıyor</span>
           <span class="step-title">Python</span>
-          <p class="step-desc" data-tr="Temel dilim. Günlük olarak pratik yapıp projelerimde kullanıyorum." data-en="My core language. I practice daily and use it in my projects.">Temel dilim. Günlük olarak pratik yapıp projelerimde kullanıyorum.</p>
+          <p class="step-desc" data-tr="İlk dilim ve temelim. Üzerinde pratik yapıp ilk projelerime hazırlanıyorum." data-en="My first language and my foundation. I practice with it and prepare for my first projects.">İlk dilim ve temelim. Üzerinde pratik yapıp ilk projelerime hazırlanıyorum.</p>
+        </div>
+        <div class="step current reveal">
+          <span class="step-label" data-tr="Şu an · öğreniyorum" data-en="Now · learning">Şu an · öğreniyorum</span>
+          <span class="step-title">C#</span>
+          <p class="step-desc" data-tr="Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfediyorum." data-en="Exploring a different ecosystem and diving deeper into object-oriented programming.">Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfediyorum.</p>
+        </div>
+        <div class="step current reveal">
+          <span class="step-label" data-tr="Şu an · öğreniyorum" data-en="Now · learning">Şu an · öğreniyorum</span>
+          <span class="step-title">C++</span>
+          <p class="step-desc" data-tr="Temellere inip performansı ve bellek yönetimini gerçekten anlamaya çalışıyorum." data-en="Going back to the fundamentals to truly understand performance and memory management.">Temellere inip performansı ve bellek yönetimini gerçekten anlamaya çalışıyorum.</p>
         </div>
         <div class="step reveal">
           <span class="step-label" data-tr="Sırada" data-en="Next">Sırada</span>
           <span class="step-title">PHP</span>
           <p class="step-desc" data-tr="Web geliştirme tarafını güçlendirmek için öğrenmeyi planlıyorum." data-en="Planning to learn it to strengthen my web development side.">Web geliştirme tarafını güçlendirmek için öğrenmeyi planlıyorum.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-label" data-tr="Planlanan" data-en="Planned">Planlanan</span>
-          <span class="step-title">C#</span>
-          <p class="step-desc" data-tr="Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfetmek için." data-en="To explore a different ecosystem and dive deeper into object-oriented programming.">Farklı bir ekosistemi ve nesne yönelimli programlamayı derinlemesine keşfetmek için.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-label" data-tr="Planlanan" data-en="Planned">Planlanan</span>
-          <span class="step-title">C++</span>
-          <p class="step-desc" data-tr="Temellere inmek, performans ve bellek yönetimini gerçekten anlamak için." data-en="To go back to the fundamentals and truly understand performance and memory management.">Temellere inmek, performans ve bellek yönetimini gerçekten anlamak için.</p>
         </div>
       </div>
     </div>
@@ -535,7 +592,7 @@
         </div>
         <div class="interest-card reveal">
           <h3 data-tr="Masaüstü &amp; Sistem" data-en="Desktop &amp; Systems">Masaüstü &amp; Sistem</h3>
-          <p data-tr="C++ ile temellere inip performansı anlamayı hedefliyorum." data-en="Aiming to go back to fundamentals and understand performance with C++.">C++ ile temellere inip performansı anlamayı hedefliyorum.</p>
+          <p data-tr="C++ öğreniyorum: temellere inip performansı anlamayı hedefliyorum." data-en="Learning C++ to go back to fundamentals and understand performance.">C++ öğreniyorum: temellere inip performansı anlamayı hedefliyorum.</p>
         </div>
         <div class="interest-card reveal">
           <h3 data-tr="Uygulama Geliştirme" data-en="App Development">Uygulama Geliştirme</h3>
@@ -543,7 +600,52 @@
         </div>
         <div class="interest-card reveal">
           <h3 data-tr="Otomasyon &amp; Scriptler" data-en="Automation &amp; Scripts">Otomasyon &amp; Scriptler</h3>
-          <p data-tr="Python ile günlük işleri kolaylaştıran küçük araçlar yazıyorum." data-en="Writing small tools with Python that make everyday tasks easier.">Python ile günlük işleri kolaylaştıran küçük araçlar yazıyorum.</p>
+          <p data-tr="Python ile günlük işleri kolaylaştıran küçük araçlar geliştirmeyi hedefliyorum." data-en="Aiming to build small Python tools that make everyday tasks easier.">Python ile günlük işleri kolaylaştıran küçük araçlar geliştirmeyi hedefliyorum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="donanim">
+    <div class="wrap">
+      <div class="hw">
+        <div class="reveal">
+          <p class="section-tag" data-tr="Donanım" data-en="Hardware">Donanım</p>
+          <h2 data-tr="Yazılım ile donanımın buluştuğu yer" data-en="Where software meets hardware">Yazılım ile donanımın buluştuğu yer</h2>
+          <p class="lead" data-tr="Elektronik, mekatronik ve bilişim alanları da ilgimi çekiyor. Kodun fiziksel dünyayla nasıl konuştuğunu keşfetmek istiyorum." data-en="Electronics, mechatronics and informatics interest me too. I want to explore how code talks to the physical world.">Elektronik, mekatronik ve bilişim alanları da ilgimi çekiyor. Kodun fiziksel dünyayla nasıl konuştuğunu keşfetmek istiyorum.</p>
+          <div class="chips">
+            <span class="chip" data-tr="Elektronik" data-en="Electronics">Elektronik</span>
+            <span class="chip" data-tr="Mekatronik" data-en="Mechatronics">Mekatronik</span>
+            <span class="chip" data-tr="Bilişim" data-en="Informatics">Bilişim</span>
+          </div>
+        </div>
+        <div class="circuit reveal" aria-hidden="true">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <path class="trace" d="M150 110 H60 V50 H20"/>
+            <path class="trace" d="M150 150 H30"/>
+            <path class="trace" d="M150 190 H70 V250 H20"/>
+            <path class="trace" d="M250 110 H330 V50 H380"/>
+            <path class="trace" d="M250 150 H370"/>
+            <path class="trace" d="M250 190 H320 V250 H380"/>
+            <path class="trace" d="M200 100 V40 H260 V15"/>
+            <path class="trace" d="M200 200 V260 H140 V285"/>
+            <path class="pulse" d="M150 110 H60 V50 H20"/>
+            <path class="pulse p2" d="M250 150 H370"/>
+            <path class="pulse p3" d="M200 200 V260 H140 V285"/>
+            <path class="pulse p2" d="M150 190 H70 V250 H20"/>
+            <path class="pulse" d="M250 110 H330 V50 H380"/>
+            <circle class="node" cx="20" cy="50" r="5"/>
+            <circle class="node" cx="30" cy="150" r="5"/>
+            <circle class="node" cx="20" cy="250" r="5"/>
+            <circle class="node" cx="380" cy="50" r="5"/>
+            <circle class="node" cx="370" cy="150" r="5"/>
+            <circle class="node" cx="380" cy="250" r="5"/>
+            <circle class="node" cx="260" cy="15" r="5"/>
+            <circle class="node" cx="140" cy="285" r="5"/>
+            <rect class="chipbody" x="150" y="100" width="100" height="100" rx="10"/>
+            <path class="pin" d="M150 110 H142 M150 150 H142 M150 190 H142 M250 110 H258 M250 150 H258 M250 190 H258 M200 100 V92 M200 200 V208"/>
+            <rect class="core" x="182" y="132" width="36" height="36" rx="6"/>
+          </svg>
         </div>
       </div>
     </div>
